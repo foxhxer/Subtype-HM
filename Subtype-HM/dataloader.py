@@ -107,23 +107,11 @@ def load_data_fea(dataset,path):
     fea_meth = fea_meth[survival_list]
     fea_mirna = fea_mirna[survival_list]
     fea_rna = fea_rna[survival_list]
-    # dim = [fea_rna.shape[0], fea_meth.shape[0], fea_mirna.shape[0], fea_CN.shape[0]]
-    # data_size = fea_rna.shape[1]
-    # # 创建多视图数据集
-    # dataset = MultiViewDataset(fea_rna, fea_meth, fea_mirna, fea_CN, survival)
-    # 2视图
 
-    if dataset == "GBM":
-        dim = [fea_rna.shape[0], fea_meth.shape[0], fea_CN.shape[0]]
-        dataset = MultiViewDataset_2(fea_rna, fea_meth, fea_CN, survival)
-        data_size = fea_rna.shape[1]
+    dim = [fea_rna.shape[0], fea_mirna.shape[0], fea_meth.shape[0], fea_CN.shape[0]]
+    data_size = fea_rna.shape[1]
 
-    else:
-
-        dim = [fea_rna.shape[0], fea_mirna.shape[0], fea_meth.shape[0], fea_CN.shape[0]]
-        data_size = fea_rna.shape[1]
-
-        dataset = MultiViewDataset(fea_rna, fea_mirna, fea_meth, fea_CN, survival)
+    dataset = MultiViewDataset(fea_rna, fea_mirna, fea_meth, fea_CN, survival)
 
 
     return dataset, dim,  data_size
